@@ -1,5 +1,5 @@
+import React, { useState } from 'react';
 import List from "./List.js";
-import geolocated from "./GeoLoc.js";
 import './App.css';
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
@@ -8,6 +8,14 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import GeoLoc from "./GeoLoc.js";
 
 function App() {
+
+
+  const [sortBy, setSortBy] = useState("SORT_DIST");
+
+  const onSortByChange = event => {
+    console.log("changeFromBelow: ", event.target.value);
+    setSortBy(event.target.value);
+  };
 
   //https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=FDD835&secondary.color=C62828
   const themeInstance = createMuiTheme({
@@ -27,14 +35,14 @@ function App() {
   return (
     <Container maxWidth="lg">
 
-
+      <em>App state: sortBy={sortBy}</em>
       <ThemeProvider theme={themeInstance}>
-      <Box color="primary.main" >
-        <Typography variant="h4" color="textSecondary">wiewarm.ch</Typography>
-        <GeoLoc />
-        <List maxitems="10"/>
-      </Box>
-    </ThemeProvider>
+        <Box color="primary.main" >
+          <Typography variant="h4" color="textSecondary">wiewarm.ch</Typography>
+          <GeoLoc sortBy={sortBy} onSortByChange={onSortByChange} />
+          <List maxitems="10" sortBy={sortBy} onSortByChange={onSortByChange}/>
+        </Box>
+      </ThemeProvider>
 
     </Container>
   );
