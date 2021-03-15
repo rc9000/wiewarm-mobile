@@ -4,6 +4,8 @@ import Typography from "@material-ui/core/Typography";
 import { useTheme, createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import { DataGrid } from '@material-ui/data-grid';
 import BadCard from "./BadCard.js";
+import haversine from 'haversine-distance'
+import { geolocated } from "react-geolocated";
 
 function List(props) {
     const [error, setError] = useState(null);
@@ -43,7 +45,7 @@ function List(props) {
     // this useEffect will run once
     // similar to componentDidMount()
     useEffect(() => {
-      fetch("https://www.wiewarm.ch:443/api/v1/temperature/all_current.json/0")
+      fetch("https://beta.wiewarm.ch:443/api/v1/temperature/all_current.json/0")
         .then(res => res.json())
         .then(
           (result) => {
@@ -80,10 +82,12 @@ function List(props) {
     } else if (useCards) {
       return (
         <ul>
-        {items.map(item => (
-
-          <BadCard bad={item} key={item.badid_text + '.' + item.beckenid}/>
-        ))}
+        {items.filter(item => item.ortlat).map(item => {
+            var userpos = {'latitude': props.coords.latitude, 'longitude': props.coords.longitude};
+            var badpos = {'latitude': item.ortlat, 'longitude': item.ortlong};
+            var dist = haversine(userpos, badpos);
+            return <BadCard bad={item} dist={dist} key={item.badid_text + '.' + item.beckenid}/>;
+        })}
       </ul>
       );
     } else {
@@ -98,5 +102,11 @@ function List(props) {
       );
     }
 }
+export default geolocated({
+  positionOptions: {
+      enableHighAccuracy: false,
+  },
+  userDecisionTimeout: 15000,
+})(List) 
 
-export default List;
+//export default List;
