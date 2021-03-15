@@ -7,16 +7,15 @@ function List(props) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
-  const [fetches, setFetches] = useState(0);
   const [shortLat, setShortLat] = useState(0);
   const shortenPos = (pos) => {
     // truncate pos to 4 decimal digits aka "individual street, large buildings"
-    const spos = pos.toString().replace(/^(.*)\.(...).*/, "$1.$2");
+    const spos = pos.toString().replace(/^(.*)\.(....).*/, "$1.$2");
     console.log("shortpos:", pos, spos);
     return spos;
   };
 
-  useEffect(() => {"geolocated update", console.log(props?.coords?.latitude)}, [props]);
+  //useEffect(() => {console.log("geolocated update", props?.coords?.latitude)}, [props]);
 
   useEffect(() => {
     fetch("https://beta.wiewarm.ch:443/api/v1/temperature/all_current.json/0")
@@ -26,13 +25,12 @@ function List(props) {
         setIsLoaded(true);
         console.log("reload list", props);
         console.log("reload list shortLat", shortLat);
-        
         result = result.filter(item => item.ortlat);
-        
+
         if (props.isGeolocationEnabled && ! props.coords){
           setShortLat(46.94);
         }
-        
+
         if (props.isGeolocationEnabled && props.coords){
           var userpos = {'latitude': props.coords.latitude, 'longitude': props.coords.longitude};
           setShortLat(shortenPos(props.coords.latitude));
@@ -42,7 +40,7 @@ function List(props) {
             return item;
           });
         }
-        
+
         if (props.sortBy === "SORT_DATE"){
           result.sort((a, b) => {                
             if (a.date < b.date) { return 1; }
@@ -50,7 +48,7 @@ function List(props) {
             return 0;
           });
           console.log("sort_date'ed", result);
-          
+
         }else if (props.sortBy === "SORT_DIST"){
           result.sort((a, b) => {                
             if (a.dist > b.dist) { return 1; }
@@ -58,8 +56,7 @@ function List(props) {
             return 0;
           });
           console.log("sort_dist'ed", result);
-        } 
-        
+        }
         setItems(result);
       },
       // Note: it's important to handle errors here
@@ -74,7 +71,7 @@ function List(props) {
       props.sortBy, 
       shortLat
     ])
-    
+
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -82,7 +79,6 @@ function List(props) {
     } else {
       return (
         <span>
-        <em>fetches: {fetches}</em>
         <ul>
         {items.map(item => {
           return <BadCard bad={item} dist={item.dist} key={item.badid_text + '.' + item.beckenid}/>;
