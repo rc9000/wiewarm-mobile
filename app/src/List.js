@@ -53,6 +53,10 @@ function List(props) {
           result.sort((a, b) => {                
             if (a.dist > b.dist) { return 1; }
             if (a.dist < b.dist) { return -1; }
+            if (a.dist === b.dist){
+                if (a.date < b.date) { return 1; }
+                if (a.date > b.date) { return -1; }
+            }
             return 0;
           });
           console.log("sort_dist'ed", result);

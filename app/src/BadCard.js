@@ -26,13 +26,13 @@ function BadCard(props) {
     <Card className={classes.root}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-          {props.bad.bad} {props.bad.ort}, {Math.floor(props.dist)}m von hier
+          {props.bad.bad} {props.bad.ort}, {Math.floor(props.dist)} Meter wyt wäg
         </Typography>
         <Typography variant="h5">
             {props.bad.becken} {props.bad.temp}&deg; 
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-            Stand {props.bad.date_pretty} Geo {props.bad.ortlat} {props.bad.ortlong}
+            Aktualisiert {props.bad.date_pretty} {/*Geo {props.bad.ortlat} {props.bad.ortlong}*/}
         </Typography>
       </CardContent>
       <CardActions>

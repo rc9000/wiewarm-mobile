@@ -38,7 +38,7 @@ function App() {
         {/*<em>App state: sortBy={sortBy}</em>*/}
         <ThemeProvider theme={themeInstance}>
         <Box color="primary.main" >
-        <Typography variant="h4" color="textSecondary">wiewarm.ch</Typography>
+        <Typography variant="h4" color="textSecondary">händy.wiewarm.ch</Typography>
         <GeoLoc sortBy={sortBy} onSortByChange={onSortByChange} />
         <List maxitems="10" sortBy={sortBy} onSortByChange={onSortByChange}/>
         </Box>
