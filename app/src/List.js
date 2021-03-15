@@ -3,46 +3,40 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { useTheme, createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import { DataGrid } from '@material-ui/data-grid';
+import BadCard from "./BadCard.js";
 
 function List(props) {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
     const theme = useTheme();
+    const useCards = true;
 
     const columns = [
-      { field: 'bad', headerName: 'Bad', width: 70 },
-      { field: 'ort', headerName: 'Ort', width: 130 },
-      { field: 'becken', headerName: 'Becken', width: 130 },
-      { field: 'kanton', headerName: 'Ort', width: 130 },
-      {
-        field: 'temp',
-        headerName: 'Temperatur',
-        type: 'number',
-        width: 20,
-      },
 
       /*
-      {
-        field: 'vG',
-        headerName: 'vG',
-        description: 'This column has a value getter and is not sortable.',
-        sortable: false,
-        width: 160,
-        valueGetter: (params) =>
-          `${params.getValue('badid') || ''} ${params.getValue('badid_text') || ''}`,
-      },
+      { field: 'badid_text', headerName: 'Badid', width: 200, type: 'string' },
+      { field: 'bad', headerName: 'Bad', width: 200 },
+      { field: 'ort', headerName: 'Ort', width: 100 },
+      { field: 'becken', headerName: 'Becken', width: 130 },
+      { field: 'kanton', headerName: 'KT', width: 130 },
 
+          sortModel={[ { field: 'badid_text', sort: 'asc', }, ]}
 
-      {
-        field: 'id',
-        headerName: 'id',
-        sortable: true,
-        width: 160,
         valueGetter: (params) =>
-          `${params.getValue('badid') || ''} ${params.getValue('beckenid') || ''}`,
-      },
+          `${params.getValue('bad') || ''} ${params.getValue('ort') || ''} ${params.getValue('becken') || ''} <br> sdfas`
       */
+
+      {
+        field: 'blob',
+        headerName: 'Badi',
+        width: "400",
+        renderCell: (params) => (
+        <span>{params.getValue('bad')} {params.getValue('ort')} {params.getValue('becken')} <em className="aktualisiert">Wert von {params.getValue('date_pretty')}</em></span>
+        )
+      },
+      { field: 'temp', headerName: 'Temperatur', type: 'number', width: "100" },
+
     ];
   
     // Note: the empty deps array [] means
@@ -54,6 +48,19 @@ function List(props) {
         .then(
           (result) => {
             setIsLoaded(true);
+            result.sort((a, b) => {                
+
+              // date desc
+              if (a.date < b.date) {
+                return 1;
+              }
+              if (a.date > b.date) {
+                return -1;
+              }
+            
+              return 0;
+
+            });
             setItems(result);
           },
           // Note: it's important to handle errors here
@@ -70,23 +77,24 @@ function List(props) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
       return <div>Loading...</div>;
+    } else if (useCards) {
+      return (
+        <ul>
+        {items.map(item => (
+
+          <BadCard bad={item} key={item.badid_text + '.' + item.beckenid}/>
+        ))}
+      </ul>
+      );
     } else {
       return (
-        
-        <Box>
+        <DataGrid 
+          autoHeight={true} 
+          rows={items} columns={columns} 
+          getRowId={(row) => row.badid +'_'+ row.beckenid} 
+        />
 
-        <DataGrid rows={items} columns={columns} getRowId ={(row) => row.badid} pageSize={100}/>
 
-        {/*
-        <ul>
-          {items.slice(0, 10).map(item => (
-            <li key={item.id}>
-              <Typography variant="body1">{item.bad} {item.ort} {item.becken} {item.temp}</Typography>
-            </li>
-          ))}
-        </ul>
-          */}
-        </Box>
       );
     }
 }
