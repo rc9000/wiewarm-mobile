@@ -1,5 +1,7 @@
 import React from "react";
 import { geolocated } from "react-geolocated";
+import { shortenPos } from './index.js'
+
 
 class GeoLoc extends React.Component {
 
@@ -10,56 +12,55 @@ class GeoLoc extends React.Component {
 
     handleChange(e) {
         console.log(e.target.name, e.target.value)
-        this.props.onSortByChange(e);  
+        this.props.onSortByChange(e);
     };
 
     render() {
         var sel = (
             <select value={this.props.sortBy} name="sortBySelect" onChange={this.handleChange}>
-            <option value="SORT_DATE">nach Datum</option>
-            <option value="SORT_DIST">nach Dischtanz</option>
+                <option value="SORT_DATE">nach Datum</option>
+                <option value="SORT_DIST">nach Dischtanz</option>
             </select>
         );
 
-        if (!this.props.isGeolocationAvailable){
-            
-            return(        
+        if (!this.props.isGeolocationAvailable) {
+            return (
                 <p>
-                <em>Dä Browser cha ke Geolocation</em>
+                    Dä Browser cha ke Geolocation<br />
                     {sel}
                 </p>
             )
 
-        } else if (!this.props.isGeolocationEnabled){
-            this.props.onSortByChange({"target": {"value": "SORT_DATE"}});
-            return(        
-                <p>
-                <em>Geolocation isch usgschautet</em>
-                {sel}
-                </p>
-            )
-
-        } else if (!this.props.coords){
-            return(        
-                <p>
-                <em>Warte uf dini Position...</em>
-                {sel}
-                </p>
-            )
-
-
-        }else{
+        } else if (!this.props.isGeolocationEnabled) {
+            this.props.onSortByChange({ "target": { "value": "SORT_DATE" } });
             return (
-                <p>Dini Position: lat {this.props?.coords?.latitude}, lon {this.props.coords.longitude}&nbsp; 
-                enabled={this.props.isGeolocationEnabled ? 'y' : 'n'} activated={this.props.isGeolocationAvailable ? 'y' : 'n'} sort={this.props.sortBy}
-                <br/>
-                {sel}
+                <p>
+                    Geolocation isch usgschautet <br />
+                    {sel}
+                </p>
+            )
+
+        } else if (!this.props.coords) {
+            return (
+                <p>
+                    <em>Warte uf dini Position...</em>
+                    {sel}
+                </p>
+            )
+
+
+        } else {
+            return (
+                <p>Dini Position: {shortenPos(this.props?.coords?.latitude)}, {shortenPos(this.props.coords.longitude)}&nbsp;
+                mitGeo={this.props.isGeolocationEnabled ? 'jo' : 'nei'} chaGeo={this.props.isGeolocationAvailable ? 'jo' : 'nei'}
+                    <br/>
+                    {sel}
                 </p>
             );
         }
     }
 }
-                    
+
 export default geolocated({
     positionOptions: {
         enableHighAccuracy: false,

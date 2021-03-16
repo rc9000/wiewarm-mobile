@@ -20,3 +20,9 @@
  * Bad Details
  * Mobile Look + Fiiil
  * Fancy Cards + Biudli
+
+## UI draft:
+
+ * Slider nach datum/distanz
+ * Slider wie nöi
+ * Slider wie nach
