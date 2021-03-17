@@ -8,11 +8,20 @@ import Typography from "@material-ui/core/Typography";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import GeoLoc from "./GeoLoc.js";
 import AppBar from "./AppBar.js";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useRouteMatch,
+    useParams, useHistory
+  } from "react-router-dom";
 
 function App() {
 
 
     const [sortBy, setSortBy] = useState("SORT_DIST");
+    const history = useHistory();
 
     const onSortByChange = event => {
         console.log("changeFromBelow: ", event.target.value);
@@ -38,14 +47,22 @@ function App() {
         <React.Fragment>
             <CssBaseline />
             <ThemeProvider theme={themeInstance}>
-                    <AppBar position="sticky" sortBy={sortBy} onSortByChange={onSortByChange} />
+                <AppBar position="sticky" sortBy={sortBy} onSortByChange={onSortByChange} />
                 <Container maxwidth="sm" color="primary.main" >
-                    {/*
-                    <Typography variant="h4" color="textSecondary">händy.wiewarm.ch</Typography>
-                    */}
+                <Router>
+                <Switch>
 
-                    <GeoLoc sortBy={sortBy} onSortByChange={onSortByChange} />
-                    <List maxitems="10" sortBy={sortBy} onSortByChange={onSortByChange} />
+                    <Route path="/badi">
+                        <Link to="/">zrügg</Link>
+                    </Route>
+
+                    <Route path="/">
+                        <GeoLoc sortBy={sortBy} onSortByChange={onSortByChange} />
+                        <Link to="/badi">härhäre</Link>
+                        <List maxitems="10" sortBy={sortBy} onSortByChange={onSortByChange} />
+                    </Route>
+                </Switch>
+                </Router>
                 </Container>
             </ThemeProvider>
         </React.Fragment>

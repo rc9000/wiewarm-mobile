@@ -83,11 +83,9 @@ function List(props) {
     } else {
       return (
         <span>
-        <ul>
         {items.map(item => {
           return <BadCard bad={item} dist={item.dist} key={item.badid_text + '.' + item.beckenid}/>;
         })}
-        </ul>
         </span>
         );
       } 
