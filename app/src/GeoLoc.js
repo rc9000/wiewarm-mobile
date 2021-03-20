@@ -43,7 +43,7 @@ class GeoLoc extends React.Component {
         } else if (!this.props.coords) {
             return (
                 <p>
-                    <em>Warte uf dini Position...</em>
+                    Warte uf dini Position..
                     {sel}
                 </p>
             )

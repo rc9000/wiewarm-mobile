@@ -7,15 +7,10 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from "@material-ui/core/Typography";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import GeoLoc from "./GeoLoc.js";
+import BadDetail from "./BadDetail.js";
 import AppBar from "./AppBar.js";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useRouteMatch,
-    useParams, useHistory
-  } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, 
+    useRouteMatch, useParams, useHistory } from "react-router-dom";
 
 function App() {
 
@@ -52,13 +47,12 @@ function App() {
                 <Router>
                 <Switch>
 
-                    <Route path="/badi">
-                        <Link to="/">zrügg</Link>
+                    <Route path="/badi/:badidText">
+                        <BadDetail />
                     </Route>
 
                     <Route path="/">
                         <GeoLoc sortBy={sortBy} onSortByChange={onSortByChange} />
-                        <Link to="/badi">härhäre</Link>
                         <List maxitems="10" sortBy={sortBy} onSortByChange={onSortByChange} />
                     </Route>
                 </Switch>

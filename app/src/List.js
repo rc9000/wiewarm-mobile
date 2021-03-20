@@ -98,6 +98,6 @@ function List(props) {
       onSuccess: () => console.log("succ"),
       watchPosition: true,
       isOptimisticGeolocationEnabled: true,
-      userDecisionTimeout: 5000,
+      userDecisionTimeout: 15000,
     })(List) 
     
