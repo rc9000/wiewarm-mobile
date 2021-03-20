@@ -5,6 +5,36 @@ import {
 } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles({
+    root: {
+        //minWidth: 275,
+        marginBottom: "1em",
+    },
+    title: {
+        fontSize: 14,
+    },
+    pos: {
+        marginBottom: 2,
+    },
+    media: {
+        height: "100%",
+    },
+    button: {
+        display: "block",
+        marginTop: "1em",
+        marginBottom: "1em",
+        marginLeft: "auto",
+        marginRight: "auto",
+    },
+});
 
 function BadDetail(props) {
 
@@ -14,16 +44,40 @@ function BadDetail(props) {
     let { badidText } = useParams();
     let url = "https://beta.wiewarm.ch/api/v1/bad/" + badidText;
     const history = useHistory();
+    const classes = useStyles();
 
-    const fun2 = ((b) => {
-        console.log("b---------", b);
-        //console.log("b---------", b, Object.getOwnPropertyNames(b));
-        var becken = [ (<p key="1">{JSON.stringify(b["Ka-We-De"])}</p>) ];
-        return (<p>balls {JSON.stringify(b)}</p>);
 
-        var bjsx = Object.getOwnPropertyNames(b).map((k) => (
+
+    const beckenDetail = ((b) => {
+
+        if (!b ){ return; }
+        var becken = [ ];
+
+        var bjsx = Object.getOwnPropertyNames(b).sort().map((k) => (
             
-            <h2>{b[k].beckenname} {b[k].temp}&deg;</h2>
+            <Card key={b[k].beckenid} variant="outlined" className={classes.root}>
+                
+            <CardContent>
+                <Grid container spacing={1}>
+                    <Grid item xs={8}>
+                        <Typography variant="h5">
+                            {b[k].beckenname}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Typography variant="h5">
+                            {b[k].temp}&deg;
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography color="textSecondary">
+                            {b[k].typ}, {b[k].status}, aktualisiert {b[k].date_pretty} 
+                        </Typography>
+                    </Grid>
+
+                </Grid>
+            </CardContent>
+            </Card>
         
         ));
         becken.push(bjsx);
@@ -40,10 +94,8 @@ function BadDetail(props) {
                     setIsLoaded(true);
                     setBad(result);
                 },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
                 (error) => {
+                    console.log("error", error)
                     setIsLoaded(true);
                     setError(error);
                 }
@@ -60,20 +112,63 @@ function BadDetail(props) {
                 <Grid item xs={12}>
                     <h1> {bad.badname}, {bad.plz} {bad.ort} </h1>
 
-                        {/*
-                       {Object.entries(bad?.becken).map((k, v) => {     
-                            console.log(k);                 
-                            return (<p>{k}</p>) ;           
-                        })};
-                    */}
 
-                    {fun2(bad.becken)};
+                    {beckenDetail(bad.becken)}
 
-                    <Button onClick={() => { history.push("/"); }} variant="contained" size="large" color="primary">
+                    <Button className={classes.button} onClick={() => { history.push("/"); }} variant="contained" size="large" color="primary">
                         Zrügg zur Lischte
                     </Button>
                 </Grid>
+
+            <Card key="bad" variant="outlined" className={classes.root}>
+                
+            <CardContent>
+                <Grid container spacing={1}>
+                    <Grid item xs={12}>
+                        <Typography color="textSecondary">Details zur Badi</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                    <Typography variant="h5">
+                        {bad.badname}, {bad.plz} {bad.ort}<br/>
+                    </Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                    <Typography variant="body2" color="textSecondary">
+                        {bad.adresse1}<br/>
+                        {bad.adresse2}<br/>
+                        {bad.telefon}<br/>
+                        {bad.email}<br/>
+                        {bad.www}
+                    </Typography>
+                    </Grid>
+
+                    <Grid item xs={4}>
+                    <Typography variant="body2" color="textSecondary">Zeiten</Typography>
+                    </Grid>
+                    <Grid item xs={8}>
+                    <Typography variant="body2" color="textPrimary">{bad.zeiten}</Typography>
+                    </Grid>
+
+                    <Grid item xs={4}>
+                    <Typography variant="body2" color="textSecondary">Preise</Typography>
+                    </Grid>
+                    <Grid item xs={8}>
+                    <Typography variant="body2" color="textPrimary">{bad.preise}</Typography>
+                    </Grid>
+
+                    <Grid item xs={4}>
+                    <Typography variant="body2" color="textSecondary">Infos</Typography>
+                    </Grid>
+                    <Grid item xs={8}>
+                    <Typography variant="body2" color="textPrimary">{bad.info}</Typography>
+                    </Grid>
+
+                </Grid>
+            </CardContent>
+            </Card>
             </Grid>
+
+
         );
     }
 }
