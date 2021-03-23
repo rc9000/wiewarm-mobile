@@ -2,7 +2,7 @@
 
 ## URL ideas
 
- * händy.wiewarm.ch
+ * https://händy.wiewarm.chlive!
  * mobiu.wiewarm.ch
  * m.wiewarm.ch
 
