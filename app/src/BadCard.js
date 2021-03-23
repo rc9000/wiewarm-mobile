@@ -27,9 +27,7 @@ const useStyles = makeStyles({
     media: {
         height: "100%",
     },   
-    button: {
-        marginTop: "3em",
-    },
+
 });
 
 function BadCard(props) {

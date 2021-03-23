@@ -26,3 +26,10 @@
  * Slider nach datum/distanz
  * Slider wie nöi
  * Slider wie nach
+
+## Known issues:
+
+ * geoloc not working on back, not tracking
+ * separate useEffect for geoloc and list reload
+ * only load visible images
+ * router ulrs don't work as entry point
