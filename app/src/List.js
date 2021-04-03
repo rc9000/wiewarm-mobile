@@ -13,6 +13,19 @@ function List(props) {
   const [nrenders, setNrenders] = useState(0);
   const [shortLat, setShortLat] = useState(0);
 
+  var itemMatchesSearchInput = function(item){
+      var str = props.searchInput?.toLowerCase();
+
+      var itemstr = item.bad + item.becken + item.ort + item.plz;
+      itemstr = itemstr.toLowerCase();
+
+      if(str === "" || !str){
+          return true;
+      }else{
+          return itemstr.includes(str);
+      }
+  };
+
   var sortList = function(newItems){
 
       if (props.sortBy === "SORT_DATE"){
@@ -90,8 +103,6 @@ function List(props) {
         return item;
       });
 
-      console.log(newItems);
-
       sortList(newItems);
       setItems(newItems);
 
@@ -122,7 +133,7 @@ function List(props) {
         }
 
         result = result.map(item => {
-          item.searchInputMatch = true;
+          item.searchInputMatch = itemMatchesSearchInput(item);
           return item;
         })
 

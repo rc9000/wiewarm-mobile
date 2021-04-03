@@ -36,9 +36,11 @@ function BadCard(props) {
     //const [taps, setTaps] = useState(0);
     const history = useHistory();
 
+    /*
     if(props.bad.badid == 17){
         console.log(props);
     }
+    */
 
     return (
         <Card className={classes.root} variant="outlined">
@@ -50,7 +52,7 @@ function BadCard(props) {
             <Grid container spacing={1}>
                 <Grid item xs={10} sm={8}>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        {props.bad.bad} {props.bad.ort}, {(isNaN(props.dist) ? "key Ahnig wiviu " : Math.floor(props.dist))} Meter wyt wäg
+                        {props.bad.bad} {props.bad.plz} {props.bad.ort}, {(isNaN(props.dist) ? "key Ahnig wiviu " : Math.floor(props.dist))} Meter wyt w&auml;gg
                     </Typography>
                     <Typography variant="h5">
                                 {props.bad.becken} {props.bad.temp}&deg;
@@ -65,7 +67,6 @@ function BadCard(props) {
                     */}
                 </Grid>
                 <Grid item xs={2} sm={4}>
-                    px: {props.bad.searchInputMatch ? "jo" : "nei"}
                 {false && props.bad?.images && props.bad.images[0] && (
                 <CardMedia
                     className={classes.media}
