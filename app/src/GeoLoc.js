@@ -51,7 +51,8 @@ class GeoLoc extends React.Component {
 
         } else {
             return (
-                <p>Dini Position: {shortenPos(this.props?.coords?.latitude)}, {shortenPos(this.props.coords.longitude)}&nbsp;
+                <p>
+                Dini Position: {shortenPos(this.props?.coords?.latitude)}, {shortenPos(this.props.coords.longitude)}&nbsp;
                 mitGeo={this.props.isGeolocationEnabled ? 'jo' : 'nei'} chaGeo={this.props.isGeolocationAvailable ? 'jo' : 'nei'}
                     <br/>
                     {sel}

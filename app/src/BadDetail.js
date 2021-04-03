@@ -157,7 +157,7 @@ function BadDetail(props) {
                     <Typography variant="body2" color="textSecondary">Infos</Typography>
                     </Grid>
                     <Grid item xs={8}>
-                    <Typography variant="body2" color="textPrimary">{bad.info}</Typography>
+                    <Typography dangerouslySetInnerHTML={{ __html: bad.info }} variant="body2" color="textPrimary"/>
                     </Grid>
 
                 </Grid>

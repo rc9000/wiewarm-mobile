@@ -22,6 +22,11 @@ function App() {
         setSortBy(event.target.value);
     };
 
+    const handleSortInput = order => {
+        console.log("sort changeFromBelow: ", order);
+        setSortBy(order);
+    };
+
     const handleSearchInput  = event => {
         console.log("search changeFromBelow: ", event.target.value);
         setSearchInput(event.target.value);
@@ -46,8 +51,8 @@ function App() {
         <React.Fragment>
             <CssBaseline />
             <ThemeProvider theme={themeInstance}>
-                <AppBar position="sticky" searchInput={searchInput} handleSearchInput={handleSearchInput} />
-                <Container maxwidth="sm" color="primary.main" >
+                <AppBar position="sticky" searchInput={searchInput} handleSearchInput={handleSearchInput} handleSortInput={handleSortInput}/>
+                <Container maxwidth="sm" color="primary.main">
                 <Router>
                 <Switch>
 
@@ -56,9 +61,10 @@ function App() {
                     </Route>
 
                     <Route path="/">
-                        <GeoLoc sortBy={sortBy} onSortByChange={onSortByChange} />
+                        { /* <GeoLoc sortBy={sortBy} onSortByChange={onSortByChange} /> */}
                         <List maxitems="10" sortBy={sortBy} onSortByChange={onSortByChange} searchInput={searchInput}/>
                     </Route>
+
                 </Switch>
                 </Router>
                 </Container>

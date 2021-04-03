@@ -1,10 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */ 
 
 import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import BadCard from "./BadCard.js";
 import haversine from 'haversine-distance'
 import { geolocated } from "react-geolocated";
 import { shortenPos, geoOpts } from './index.js'
+
+const useStyles = makeStyles({
+    root: {
+        //minWidth: 275,
+        paddingTop: "2em",
+    },
+});
 
 function List(props) {
   const [error, setError] = useState(null);
@@ -12,6 +20,8 @@ function List(props) {
   const [items, setItems] = useState([]);
   const [nrenders, setNrenders] = useState(0);
   const [shortLat, setShortLat] = useState(0);
+
+  const classes = useStyles();
 
   var itemMatchesSearchInput = function(item){
       var str = props.searchInput?.toLowerCase();
@@ -155,13 +165,10 @@ function List(props) {
       return <div>Loading...</div>;
     } else {
       return (
-        <div>
-            <em>nrenders {nrenders} </em>
-        <span>
+        <div className={classes.root}>
         {items.filter(item => item.searchInputMatch).map(item => {
           return <BadCard bad={item} dist={item.dist} key={item.badid_text + '.' + item.beckenid} x={22} sm={item.searchInputMatch} />;
         })}
-        </span>
         </div>
         );
       } 

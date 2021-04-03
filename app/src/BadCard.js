@@ -45,9 +45,8 @@ function BadCard(props) {
     return (
         <Card className={classes.root} variant="outlined">
             <CardActionArea onClick={e => { 
-                    console.log(e) ; 
-                    history.push("/badi/" + props.bad.badid_text);
-                    }}>
+                history.push("/badi/" + props.bad.badid_text);
+            }}>
             <CardContent>
             <Grid container spacing={1}>
                 <Grid item xs={10} sm={8}>
