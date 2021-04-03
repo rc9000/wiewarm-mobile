@@ -36,6 +36,10 @@ function BadCard(props) {
     //const [taps, setTaps] = useState(0);
     const history = useHistory();
 
+    if(props.bad.badid == 17){
+        console.log(props);
+    }
+
     return (
         <Card className={classes.root} variant="outlined">
             <CardActionArea onClick={e => { 
@@ -61,6 +65,7 @@ function BadCard(props) {
                     */}
                 </Grid>
                 <Grid item xs={2} sm={4}>
+                    px: {props.bad.searchInputMatch ? "jo" : "nei"}
                 {false && props.bad?.images && props.bad.images[0] && (
                 <CardMedia
                     className={classes.media}

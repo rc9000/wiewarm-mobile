@@ -97,7 +97,7 @@ function BadDetail(props) {
                     setError(error);
                 }
             )
-    });
+    }, [url]);
 
     if (error) {
         return <div>Error: {error.message}</div>;

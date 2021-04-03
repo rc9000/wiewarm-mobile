@@ -15,10 +15,16 @@ function App() {
 
 
     const [sortBy, setSortBy] = useState("SORT_DIST");
+    const [searchInput, setSearchInput] = useState("");
 
     const onSortByChange = event => {
-        console.log("changeFromBelow: ", event.target.value);
+        console.log("sort changeFromBelow: ", event.target.value);
         setSortBy(event.target.value);
+    };
+
+    const handleSearchInput  = event => {
+        console.log("search changeFromBelow: ", event.target.value);
+        setSearchInput(event.target.value);
     };
 
     //https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=FDD835&secondary.color=C62828
@@ -40,7 +46,7 @@ function App() {
         <React.Fragment>
             <CssBaseline />
             <ThemeProvider theme={themeInstance}>
-                <AppBar position="sticky" sortBy={sortBy} onSortByChange={onSortByChange} />
+                <AppBar position="sticky" searchInput={searchInput} handleSearchInput={handleSearchInput} />
                 <Container maxwidth="sm" color="primary.main" >
                 <Router>
                 <Switch>
@@ -51,7 +57,7 @@ function App() {
 
                     <Route path="/">
                         <GeoLoc sortBy={sortBy} onSortByChange={onSortByChange} />
-                        <List maxitems="10" sortBy={sortBy} onSortByChange={onSortByChange} />
+                        <List maxitems="10" sortBy={sortBy} onSortByChange={onSortByChange} searchInput={searchInput}/>
                     </Route>
                 </Switch>
                 </Router>

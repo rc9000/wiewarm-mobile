@@ -46,6 +46,10 @@ function List(props) {
         //console.log("loc minor change: ignored")
       }
 
+      if (! props?.coords?.latitude){
+          return;
+      }
+
       var newItems = JSON.parse(JSON.stringify(items));
 
       newItems.map(item => {
@@ -61,6 +65,37 @@ function List(props) {
       setItems(newItems);
 
   }, [props]);
+  //}, [props]);
+
+  useEffect(() => {
+      console.log("search filter: ", props.searchInput)
+      var str = props.searchInput?.toLowerCase();
+
+      if (!items || items.length === 0){
+          return;
+      }
+
+      var newItems = JSON.parse(JSON.stringify(items));
+
+      //const filteredItems = items.filter(item => {
+      newItems.map(item => {
+        var itemstr = item.bad + item.becken + item.ort + item.plz;
+        itemstr = itemstr.toLowerCase();
+
+        if(str === "" || !str){
+            item.searchInputMatch =  true;
+        }else{
+            item.searchInputMatch =  itemstr.includes(str);
+        }
+        return item;
+      });
+
+      console.log(newItems);
+
+      sortList(newItems);
+      setItems(newItems);
+
+  }, [props.searchInput]);
 
   useEffect(() => {
     fetch("https://beta.wiewarm.ch:443/api/v1/temperature/all_current.json/0")
@@ -86,6 +121,11 @@ function List(props) {
           });
         }
 
+        result = result.map(item => {
+          item.searchInputMatch = true;
+          return item;
+        })
+
         sortList(result);
         setItems(result);
       },
@@ -107,8 +147,8 @@ function List(props) {
         <div>
             <em>nrenders {nrenders} </em>
         <span>
-        {items.map(item => {
-          return <BadCard bad={item} dist={item.dist} key={item.badid_text + '.' + item.beckenid}/>;
+        {items.filter(item => item.searchInputMatch).map(item => {
+          return <BadCard bad={item} dist={item.dist} key={item.badid_text + '.' + item.beckenid} x={22} sm={item.searchInputMatch} />;
         })}
         </span>
         </div>
