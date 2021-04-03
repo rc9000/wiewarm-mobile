@@ -1,22 +1,20 @@
 import React, { useState } from 'react';
 import List from "./List.js";
 import './App.css';
-import Box from "@material-ui/core/Box";
+//import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from "@material-ui/core/Typography";
+//import Typography from "@material-ui/core/Typography";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import GeoLoc from "./GeoLoc.js";
 import BadDetail from "./BadDetail.js";
 import AppBar from "./AppBar.js";
-import { BrowserRouter as Router, Switch, Route, Link, 
-    useRouteMatch, useParams, useHistory } from "react-router-dom";
+import { HashRouter as Router, Switch, Route} from "react-router-dom";
 
 function App() {
 
 
     const [sortBy, setSortBy] = useState("SORT_DIST");
-    const history = useHistory();
 
     const onSortByChange = event => {
         console.log("changeFromBelow: ", event.target.value);

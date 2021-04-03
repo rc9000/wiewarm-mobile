@@ -1,6 +1,6 @@
 import React from "react";
 import { geolocated } from "react-geolocated";
-import { shortenPos } from './index.js'
+import { shortenPos, geoOpts } from './index.js'
 
 
 class GeoLoc extends React.Component {
@@ -61,9 +61,4 @@ class GeoLoc extends React.Component {
     }
 }
 
-export default geolocated({
-    positionOptions: {
-        enableHighAccuracy: false,
-    },
-    userDecisionTimeout: 15000,
-})(GeoLoc);
+export default geolocated(geoOpts())(GeoLoc);
