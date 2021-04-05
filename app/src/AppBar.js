@@ -10,6 +10,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,6 +41,7 @@ export default function ButtonAppBar({searchInput, handleSearchInput, handleSort
     const classes = useStyles();
     const [showSearch, setShowSearch] = useState("dp_none");
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const { t, i18n } = useTranslation();
 
     const handleSearchClick = (event) => {
         console.log("search click:", event, classes)
@@ -50,6 +52,11 @@ export default function ButtonAppBar({searchInput, handleSearchInput, handleSort
             setShowSearch("dp_none");
         }
     };
+
+    const handleLang  = (event) => {
+        i18n.changeLanguage(event.currentTarget.dataset.lng);
+        setAnchorEl(null);
+    }
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -72,7 +79,7 @@ export default function ButtonAppBar({searchInput, handleSearchInput, handleSort
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-                    <Typography variant="h6" className={classes.title }>h&auml;ndy.wiewarm.ch</Typography>
+                    <Typography variant="h6" className={classes.title }>{t('AppTitle')}</Typography>
                     <IconButton onClick={handleSearchClick} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                         <SearchIcon />
                     </IconButton>
@@ -81,13 +88,17 @@ export default function ButtonAppBar({searchInput, handleSearchInput, handleSort
                     </IconButton>
 
                     <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-                        <MenuItem data-sort="SORT_DIST" onClick={handleClose}>Sortiere nach Dischtanz</MenuItem>
-                        <MenuItem data-sort="SORT_DATE" onClick={handleClose}>Sortiere nach Datum</MenuItem>
+                        <MenuItem data-sort="SORT_DIST" onClick={handleClose}>{t("Sortiere nach Dischtanz")}</MenuItem>
+                        <MenuItem data-sort="SORT_DATE" onClick={handleClose}>{t("Sortiere nach Datum")}</MenuItem>
+                        <hr/>
+                        <MenuItem data-lng="chBE" onClick={handleLang}>Sproch Bärndütsch</MenuItem>
+                        <MenuItem data-lng="de" onClick={handleLang}>Sprache Deutsch</MenuItem>
                     </Menu>
                 </Toolbar>
 
                 <form className={classes.searchinput + " " + showSearch} noValidate autoComplete="off">
-                    <TextField className={showSearch} autoFocus spellCheck="false" id="outlined-basic" label="Sueche..." variant="outlined" value={searchInput} onChange={handleSearchInput} />
+                    <TextField className={showSearch} autoFocus spellCheck="false" id="outlined-basic" label={t("Sueche...")} 
+                        variant="outlined" value={searchInput} onChange={handleSearchInput} />
                 </form>
             </AppBar>
         </div>

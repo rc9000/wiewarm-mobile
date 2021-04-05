@@ -12,7 +12,7 @@
 
 ## Todo:
 
- * Sueche fokus automatisch
  * i18n sprach wächsle
+ * Sueche fokus automatisch, ok/clear chnopf
  * räscht lat/long erfasse
 

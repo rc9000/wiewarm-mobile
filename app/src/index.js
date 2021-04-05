@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import './i18n';
 
-export function shortenPos01 (pos) { return pos };
+//export function shortenPos01 (pos) { return pos };
 export function shortenPos (pos) {
     if (!pos){
         return;
@@ -18,7 +19,7 @@ export function geoOpts() {
         positionOptions: {
           enableHighAccuracy: false,
         },
-        onSuccess: () => console.log("gloc: success"),
+        //onSuccess: () => console.log("gloc: success"),
         watchPosition: true,
         isOptimisticGeolocationEnabled: true,
         userDecisionTimeout: 15000,

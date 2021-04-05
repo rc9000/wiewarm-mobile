@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import { geolocated } from "react-geolocated";
 //import { randomArrayIndex } from './index.js'
 import { useHistory } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles({
     root: {
@@ -32,8 +33,7 @@ const useStyles = makeStyles({
 
 function BadCard(props) {
     const classes = useStyles();
-  
-    //const [taps, setTaps] = useState(0);
+    const { t } = useTranslation();
     const history = useHistory();
 
     /*
@@ -51,13 +51,13 @@ function BadCard(props) {
             <Grid container spacing={1}>
                 <Grid item xs={10} sm={8}>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        {props.bad.bad} {props.bad.plz} {props.bad.ort}, {(isNaN(props.dist) ? "key Ahnig wiviu " : Math.floor(props.dist))} Meter wyt w&auml;gg
+                        {props.bad.bad} {props.bad.plz} {props.bad.ort}, {(isNaN(props.dist) ? t("key Ahnig wiviu") : Math.floor(props.dist))} {t("Meter wyt wägg")}
                     </Typography>
                     <Typography variant="h5">
                                 {props.bad.becken} {props.bad.temp}&deg;
                     </Typography>
                     <Typography className={classes.pos} color="textSecondary">
-                        Aktualisiert {props.bad.date_pretty} {/*Geo {props.bad.ortlat} {props.bad.ortlong}*/}
+                     {t("aktualisiert")} {props.bad.date_pretty} {/*Geo {props.bad.ortlat} {props.bad.ortlong}*/}
                     </Typography>
                     {/*
                      <CardActions>

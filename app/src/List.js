@@ -6,6 +6,7 @@ import BadCard from "./BadCard.js";
 import haversine from 'haversine-distance'
 import { geolocated } from "react-geolocated";
 import { shortenPos, geoOpts } from './index.js'
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles({
     root: {
@@ -22,6 +23,7 @@ function List(props) {
   const [shortLat, setShortLat] = useState(0);
 
   const classes = useStyles();
+  const { t } = useTranslation();
 
   var itemMatchesSearchInput = function(item){
       var str = props.searchInput?.toLowerCase();

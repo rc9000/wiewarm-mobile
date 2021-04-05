@@ -19,3 +19,7 @@ code {
 .dp_block {
     display: block;
 }
+
+hr { color: rgba(0, 0, 0, 0.12); 
+    border-width: 1px;
+}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from "react-router-dom";
-import Button from '@material-ui/core/Button';
+import { useParams } from "react-router-dom";
+//import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -9,6 +9,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 //import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles({
     root: {
@@ -43,8 +44,9 @@ function BadDetail(props) {
     const [error, setError] = useState(null);
     let { badidText } = useParams();
     let url = "https://beta.wiewarm.ch/api/v1/bad/" + badidText;
-    const history = useHistory();
+    // const history = useHistory();
     const classes = useStyles();
+    const { t } = useTranslation();
 
 
 
@@ -71,7 +73,7 @@ function BadDetail(props) {
                     </Grid>
                     <Grid item xs={12}>
                         <Typography color="textSecondary">
-                            {b[k].typ}, {b[k].status}, aktualisiert {b[k].date_pretty} 
+                            {b[k].typ}, {b[k].status}, {t("aktualisiert")} {b[k].date_pretty} 
                         </Typography>
                     </Grid>
 
@@ -127,7 +129,7 @@ function BadDetail(props) {
             <CardContent>
                 <Grid container spacing={1}>
                     <Grid item xs={12}>
-                        <Typography color="textSecondary">Details zur Badi</Typography>
+                        <Typography color="textSecondary">{t("Details zur Badi")}</Typography>
                     </Grid>
                     <Grid item xs={12}>
                     <Typography variant="h5">
@@ -145,21 +147,21 @@ function BadDetail(props) {
                     </Grid>
 
                     <Grid item xs={4}>
-                    <Typography variant="body2" color="textSecondary">Zeiten</Typography>
+                    <Typography variant="body2" color="textSecondary">{t("Zyte")}</Typography>
                     </Grid>
                     <Grid item xs={8}>
                     <Typography variant="body2" color="textPrimary">{bad.zeiten}</Typography>
                     </Grid>
 
                     <Grid item xs={4}>
-                    <Typography variant="body2" color="textSecondary">Preise</Typography>
+                    <Typography variant="body2" color="textSecondary">{t("Prise")}</Typography>
                     </Grid>
                     <Grid item xs={8}>
                     <Typography variant="body2" color="textPrimary">{bad.preise}</Typography>
                     </Grid>
 
                     <Grid item xs={4}>
-                    <Typography variant="body2" color="textSecondary">Infos</Typography>
+                    <Typography variant="body2" color="textSecondary">{t("Infos")}</Typography>
                     </Grid>
                     <Grid item xs={8}>
                     <Typography dangerouslySetInnerHTML={{ __html: bad.info }} variant="body2" color="textPrimary"/>
