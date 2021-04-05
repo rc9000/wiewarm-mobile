@@ -87,7 +87,7 @@ export default function ButtonAppBar({searchInput, handleSearchInput, handleSort
                 </Toolbar>
 
                 <form className={classes.searchinput + " " + showSearch} noValidate autoComplete="off">
-                    <TextField className={showSearch} spellCheck="false" id="outlined-basic" label="Sueche..." variant="outlined" value={searchInput} onChange={handleSearchInput} />
+                    <TextField className={showSearch} autoFocus spellCheck="false" id="outlined-basic" label="Sueche..." variant="outlined" value={searchInput} onChange={handleSearchInput} />
                 </form>
             </AppBar>
         </div>

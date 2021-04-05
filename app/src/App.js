@@ -6,7 +6,7 @@ import Container from "@material-ui/core/Container";
 import CssBaseline from '@material-ui/core/CssBaseline';
 //import Typography from "@material-ui/core/Typography";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import GeoLoc from "./GeoLoc.js";
+// import GeoLoc from "./GeoLoc.js";
 import BadDetail from "./BadDetail.js";
 import AppBar from "./AppBar.js";
 import { HashRouter as Router, Switch, Route} from "react-router-dom";
@@ -17,10 +17,12 @@ function App() {
     const [sortBy, setSortBy] = useState("SORT_DIST");
     const [searchInput, setSearchInput] = useState("");
 
+    /*
     const onSortByChange = event => {
         console.log("sort changeFromBelow: ", event.target.value);
         setSortBy(event.target.value);
     };
+    */
 
     const handleSortInput = order => {
         console.log("sort changeFromBelow: ", order);
@@ -62,7 +64,7 @@ function App() {
 
                     <Route path="/">
                         { /* <GeoLoc sortBy={sortBy} onSortByChange={onSortByChange} /> */}
-                        <List maxitems="10" sortBy={sortBy} onSortByChange={onSortByChange} searchInput={searchInput}/>
+                        <List maxitems="10" sortBy={sortBy} searchInput={searchInput}/>
                     </Route>
 
                 </Switch>

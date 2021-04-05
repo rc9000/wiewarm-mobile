@@ -162,12 +162,12 @@ function List(props) {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      return <div className={classes.root}>itz nid jufle...</div>;
     } else {
       return (
         <div className={classes.root}>
         {items.filter(item => item.searchInputMatch).map(item => {
-          return <BadCard bad={item} dist={item.dist} key={item.badid_text + '.' + item.beckenid} x={22} sm={item.searchInputMatch} />;
+          return <BadCard bad={item} dist={item.dist} key={item.badid_text + '.' + item.beckenid} sm={item.searchInputMatch} />;
         })}
         </div>
         );

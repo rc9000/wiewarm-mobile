@@ -31,6 +31,9 @@ const useStyles = makeStyles({
         marginLeft: "auto",
         marginRight: "auto",
     },
+    jufle: {
+        paddingTop: "2em",
+    }
 });
 
 function BadDetail(props) {
@@ -102,7 +105,7 @@ function BadDetail(props) {
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-        return <div>Loading...</div>;
+        return <div className={classes.jufle}>itz nid jufle...</div>
     } else {
         return (
             <Grid container spacing={1} alignItems="center" justify="center">
@@ -112,9 +115,11 @@ function BadDetail(props) {
 
                     {beckenDetail(bad.becken)}
 
+                    {/*
                     <Button className={classes.button} onClick={() => { history.push("/"); }} variant="contained" size="large" color="primary">
                         Zrügg zur Lischte
                     </Button>
+                    */}
                 </Grid>
 
             <Card key="bad" variant="outlined" className={classes.root}>
