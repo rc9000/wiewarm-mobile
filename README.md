@@ -1,4 +1,4 @@
-# wiewarm4 - the wiewarm mobile app
+# wiewarm-mobile - the next genearation wiewarm.ch app
 
 ## Check it out:
 
