@@ -1,18 +1,12 @@
-# wiewarm4 - Gen IV wiewarm mobile app
+# wiewarm4 - the wiewarm mobile app
 
-## URL ideas
+## Check it out:
 
- * https://händy.wiewarm.ch live!
- * m.wiewarm.ch
+ * https://händy.wiewarm.ch aka https://m.wiewarm.ch
 
-## i18n ideas
+## Todo - Collaborators welcome
 
- * Bärndütsch
- * Hochdeutsch
-
-## Todo:
-
- * i18n sprach wächsle
- * Sueche fokus automatisch, ok/clear chnopf
- * räscht lat/long erfasse
+ * make it look better
+ * add images in detail view
+ * add languages: fr/it/more dialects 
 
