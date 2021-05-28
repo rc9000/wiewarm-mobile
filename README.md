@@ -1,4 +1,4 @@
-# wiewarm-mobile - the next genearation wiewarm.ch app
+# wiewarm-mobile - next generation wiewarm.ch react app
 
 ## Check it out:
 
