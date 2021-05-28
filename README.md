@@ -11,4 +11,5 @@
  * add images in detail view
  * add languages: fr/it/more dialects 
  * implement all desktop site functions and replace it with this modern mobile-first approach
+ * add tests and ci/cd pipeline
 
