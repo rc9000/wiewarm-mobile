@@ -1,18 +1,17 @@
-# wiewarm4 - Gen IV wiewarm mobile app
+# wiewarm.ch mobile React app
 
-## URL ideas
+## Probiers uus
 
- * https://händy.wiewarm.ch live!
- * m.wiewarm.ch
+ * https://händy.wiewarm.ch 
+ * oder o https://m.wiewarm.ch eifacher zum schribe
 
-## i18n ideas
+ ## Mach mit
 
- * Bärndütsch
- * Hochdeutsch
+  * mit PRs, Issues usw. i däm Repo
 
 ## Todo:
 
- * i18n sprach wächsle
- * Sueche fokus automatisch, ok/clear chnopf
- * räscht lat/long erfasse
+ * Suechi sött besser si
+ * Sprochuswauh spychere in Cookie
+ * Cookie consent? 
 

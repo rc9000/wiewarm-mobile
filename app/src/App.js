@@ -53,9 +53,9 @@ function App() {
         <React.Fragment>
             <CssBaseline />
             <ThemeProvider theme={themeInstance}>
+                <Router>
                 <AppBar position="sticky" searchInput={searchInput} handleSearchInput={handleSearchInput} handleSortInput={handleSortInput}/>
                 <Container maxwidth="sm" color="primary.main">
-                <Router>
                 <Switch>
 
                     <Route path="/badi/:badidText">
@@ -68,8 +68,8 @@ function App() {
                     </Route>
 
                 </Switch>
-                </Router>
                 </Container>
+                </Router>
             </ThemeProvider>
         </React.Fragment>
     );
