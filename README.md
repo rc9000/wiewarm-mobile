@@ -11,7 +11,6 @@
 
 ## Todo:
 
- * Suechi sött besser si
  * Sprochuswauh spychere in Cookie
- * Cookie consent? 
-
+ * Cookie consent nagware
+ * meh Sproche
