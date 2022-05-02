@@ -3,7 +3,6 @@
 ## Probiers uus
 
  * https://händy.wiewarm.ch 
- * oder o https://m.wiewarm.ch eifacher zum schribe
 
  ## Mach mit
 
@@ -14,3 +13,4 @@
  * Sprochuswauh spychere in Cookie
  * Cookie consent nagware
  * meh Sproche
+ * Link uf Desktop-Site
