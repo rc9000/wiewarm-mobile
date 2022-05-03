@@ -14,3 +14,4 @@
  * Cookie consent nagware
  * meh Sproche
  * Link uf Desktop-Site
+ * Filter für nume neueri Tämperature
