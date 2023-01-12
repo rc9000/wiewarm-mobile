@@ -15,3 +15,5 @@
  * meh Sproche
  * Link uf Desktop-Site
  * Filter für nume neueri Tämperature
+ * replace ganzy Desktop-Site mit Admin usw.
+ * React -> Next.js mit SSR?
